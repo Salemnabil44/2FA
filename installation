@@ -1,0 +1,60 @@
+Pour mettre en place l'authentification à deux facteurs (2FA) gratuite avec **Azure Active Directory Free Tier** et **Microsoft Authenticator**, voici les étapes détaillées à suivre :
+
+### 1. **Pré-requis**
+   - **Un environnement Active Directory** local en place.
+   - **Un compte Azure** : Tu peux créer un compte gratuit sur [le site d'Azure](https://azure.microsoft.com/).
+   - **Azure AD Connect** : Un outil pour synchroniser les utilisateurs AD locaux avec Azure AD.
+
+### 2. **Créer un Compte Azure Gratuit**
+   1. Accède au [site d'Azure](https://azure.microsoft.com/) et inscris-toi pour un compte gratuit.
+   2. Complète l'inscription en fournissant les informations demandées (email, carte de crédit pour vérification, etc.).
+   3. Une fois le compte créé, connecte-toi au **Portail Azure**.
+
+### 3. **Configurer Azure AD Connect**
+   1. **Télécharger Azure AD Connect :**
+      - Depuis le Portail Azure, cherche "Azure AD Connect" et télécharge l'outil.
+   2. **Installer Azure AD Connect :**
+      - Lance l'installation sur ton serveur Active Directory.
+      - Choisis l'option "Express Settings" si tu souhaites une configuration standard, ou "Customize" pour des options spécifiques (par exemple, filtrer quels utilisateurs sont synchronisés).
+   3. **Synchroniser ton AD local avec Azure AD :**
+      - Suis les instructions de l'installateur pour connecter ton AD local à ton tenant Azure AD.
+      - Connecte-toi avec les identifiants d'un administrateur global d'Azure AD pour permettre la synchronisation.
+      - Vérifie que la synchronisation est active et que tes utilisateurs AD sont visibles dans le portail Azure AD.
+
+### 4. **Activer l'Authentification Multifacteur (MFA)**
+   1. **Accéder à Azure AD dans le Portail Azure :**
+      - Dans le Portail Azure, recherche "Azure Active Directory" et clique dessus.
+   2. **Configurer l'authentification multifacteur :**
+      - Dans le panneau de navigation de gauche, clique sur **Security** puis sur **Multifactor Authentication**.
+      - Tu seras redirigé vers la page "Multi-Factor Authentication" où tu pourras gérer les utilisateurs.
+   3. **Activer MFA pour les utilisateurs :**
+      - Sélectionne les utilisateurs pour lesquels tu souhaites activer MFA.
+      - Coche la case pour activer MFA pour ces utilisateurs.
+      - Azure enverra un email aux utilisateurs sélectionnés pour les informer de la configuration de MFA.
+
+### 5. **Configurer Microsoft Authenticator pour les Utilisateurs**
+   1. **Installation de l'application Microsoft Authenticator :**
+      - Demande aux utilisateurs d'installer l'application **Microsoft Authenticator** sur leur smartphone (disponible sur Google Play et l'App Store).
+   2. **Premier login après activation de MFA :**
+      - Lors de leur prochaine connexion, les utilisateurs seront invités à configurer leur méthode MFA.
+      - Ils doivent choisir l'application mobile (Microsoft Authenticator).
+   3. **Configuration de l'application :**
+      - L'utilisateur doit ouvrir l'application Microsoft Authenticator, choisir "Ajouter un compte" puis "Compte professionnel ou scolaire".
+      - Ils scanneront un QR code affiché à l'écran ou entreront manuellement un code pour lier l'application à leur compte.
+   4. **Finaliser la configuration :**
+      - Une fois l'application configurée, ils recevront un code de vérification pour tester la connexion.
+      - Après confirmation, 2FA sera activé pour leur compte.
+
+### 6. **Vérification et Gestion des Utilisateurs**
+   1. **Vérifier les connexions :**
+      - Dans le Portail Azure, tu peux surveiller l'activité de connexion et vérifier que 2FA est correctement appliqué.
+   2. **Gestion continue :**
+      - Tu peux gérer les paramètres de MFA (comme les exceptions, les méthodes supplémentaires) à partir du portail Azure AD.
+      - Si nécessaire, tu peux forcer les utilisateurs à reconfigurer leur MFA.
+
+### 7. **Documentation et Support**
+   - **Documentation officielle d’Azure :** [Documentation Azure AD Connect](https://docs.microsoft.com/en-us/azure/active-directory/hybrid/how-to-connect-install-express) pour des instructions détaillées.
+   - **Support Azure :** Utilise le support Azure ou la communauté Microsoft pour résoudre les problèmes.
+
+### **Conclusion**
+En suivant ces étapes, tu pourras configurer l'authentification à deux facteurs gratuite pour tes utilisateurs Active Directory via Azure AD et Microsoft Authenticator. Cela ajoutera une couche de sécurité supplémentaire pour protéger les connexions à vos services connectés à Azure AD.
